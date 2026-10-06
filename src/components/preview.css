@@ -28,10 +28,6 @@
   color: var(--afs-on-foreground);
 }
 
-.afs-preview-loading-container {
-  width: 20%;
-}
-
 .afs-preview-placeholder-card {
   display: flex;
   width: 100%;
@@ -86,6 +82,7 @@
 }
 
 .afs-preview-info {
+  text-align: left;
   font-size: 0.875rem; /* 14px */
   line-height: 1.25rem; /* 20px */
   min-height: 0;
@@ -101,4 +98,8 @@
 
 .afs-preview-text-break {
   word-break: break-all;
+}
+
+.afs-preview-text {
+  margin: 0;
 }

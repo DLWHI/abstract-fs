@@ -7,18 +7,22 @@ import { isFolder, isImage, isVideo } from "../lib/storage";
 
 export function ItemIcon({
   item,
+  width,
+  height,
   className,
 }: {
   item: StorageEntity;
+  width?: number;
+  height?: number;
   className?: string;
 }) {
   if (isFolder(item)) {
-    return <FolderIcon className={className} />;
+    return <FolderIcon width={width} height={height} className={className} />;
   } else if (isImage(item)) {
-    return <ImageIcon className={className} />;
+    return <ImageIcon width={width} height={height} className={className} />;
   } else if (isVideo(item)) {
-    return <VideoIcon className={className} />;
+    return <VideoIcon width={width} height={height} className={className} />;
   } else {
-    return <FileIcon className={className} />;
+    return <FileIcon width={width} height={height} className={className} />;
   }
 }

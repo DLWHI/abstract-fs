@@ -1,6 +1,6 @@
 .afs-browser {
   display: flex;
-  min-height: 0;
+  min-height: 500px;
   height: 100%;
   flex-direction: column;
   color: var(--afs-on-background);
@@ -26,6 +26,7 @@
 
 .afs-browser-list-container {
   grid-row: span 2 / span 2;
+  align-items: center;
   min-height: 0;
 }
 

@@ -35,3 +35,61 @@
   color: var(--afs-on-foreground);
   background-color: var(--afs-foreground);
 }
+
+.afs-file-table-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  overflow-y: auto;
+  background-color: var(--afs-foreground);
+}
+
+.afs-file-table-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.afs-file-table-placeholder-text {
+  text-align: center;
+  color: var(--afs-secondary);
+}
+
+.afs-file-table-element {
+  width: 100%;
+  align-items: center;
+  text-align: left;
+  background-color: var(--afs-background);
+  transition-property: background;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 250ms;
+  color: var(--afs-on-background);
+  border-top: 0px solid;
+  border-left: 0px solid;
+  border-right: 0px solid;
+}
+
+.afs-file-table-element-selectable:hover {
+  background-color: var(--afs-foreground);
+}
+
+.afs-file-table-selected {
+  width: 100%;
+  align-items: center;
+  text-align: left;
+  background-color: var(--afs-special);
+}
+
+.afs-file-table-filename {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.afs-file-table-text {
+  font-size: 0.875rem; /* 14px */
+  line-height: 1.25rem; /* 20px */
+  color: var(--afs-secondary);
+}

@@ -29,7 +29,7 @@ export function FileList({
     <div className="afs-file-list-container">
       <div className="afs-file-list-content">
         <FileListHeader />
-        <div className="flex-1 flex flex-col overflow-y-auto bg-foreground">
+        <div className="afs-file-table-body">
           {sorted.map((item) => (
             <FileListRow
               key={item.id}
@@ -41,8 +41,8 @@ export function FileList({
             />
           ))}
           {!sorted.length && (
-            <div className="h-full flex items-center justify-center">
-              <span className="text-center text-inner">empty</span>
+            <div className="afs-file-table-body-placeholder">
+              <span className="afs-file-table-placeholder-text">empty</span>
             </div>
           )}
         </div>
@@ -84,15 +84,12 @@ export function FileListRow({
         e.stopPropagation();
       }}
       onDoubleClick={() => (folder ? onFolderOpen(item) : onFileOpen?.(item))}
-      // className={
-      //   "animated-200 w-full items-center table-list text-left last:border-0 bg-background",
-      //   selected ? "bg-focus" : "hover:bg-inner",
-      // }
+      className={`afs-file-table-list afs-file-table-element ${selected ? "afs-file-table-selected" : "afs-file-table-element-selectable"}`}
     >
-      <ItemIcon item={item} className="size-9" aria-hidden="true" />
-      <span className="truncate min-w-0">{itemName(item)}</span>
-      <span className="text-sm text-secondary">{typeOf(item)}</span>
-      <span className="text-sm text-secondary">
+      <ItemIcon item={item} width={32} height={32} aria-hidden="true" />
+      <span className="afs-file-table-filename">{itemName(item)}</span>
+      <span className="afs-file-table-text">{typeOf(item)}</span>
+      <span className="afs-file-table-text">
         {item.modified
           ? new Date(item.modified).toLocaleString()
           : formatSize(item.size)}

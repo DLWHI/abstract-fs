@@ -4,7 +4,9 @@ import "./loading.css";
 export function Loading() {
   return (
     <div className="afs-loading">
-      <Spinner />
+      <div className="afs-loading-spinner-container">
+        <Spinner />
+      </div>
       <span>loading</span>
     </div>
   );

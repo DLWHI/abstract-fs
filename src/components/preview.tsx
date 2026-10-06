@@ -2,7 +2,7 @@ import TrashBin from "../assets/trash-bin.svg?react";
 import { useTransition } from "react";
 import type { StorageEntity } from "../lib/types";
 import { itemName, formatSize, typeOf } from "../lib/storage";
-import { Spinner } from "./spinner";
+import { Loading } from "./loading";
 import "./preview.css";
 
 export type SourceURLProvider = (item: StorageEntity) => string;
@@ -26,12 +26,7 @@ export function Preview({
   if (loading) {
     return (
       <aside className="afs-preview-container">
-        <div className="afs-preview-placeholder">
-          <div className="afs-preview-loading-container">
-            <Spinner />
-          </div>
-          <span className="afs-preview-placeholder-text">loading</span>
-        </div>
+        <Loading />
       </aside>
     );
   }
@@ -113,20 +108,26 @@ export function Preview({
         <dl className="afs-preview-info">
           <div>
             <dt className="afs-preview-text-heading">path</dt>
-            <dd className="afs-preview-text-break">{item.id}</dd>
+            <dd className="afs-preview-text-break afs-preview-text">
+              {item.id}
+            </dd>
           </div>
           <div>
             <dt className="afs-preview-text-heading">type</dt>
-            <dd>type</dd>
+            <dd className="afs-preview-text">type</dd>
           </div>
-          <div>
-            <dt className="afs-preview-text-heading">size</dt>
-            <dd>{formatSize(item.size)}</dd>
-          </div>
+          {item.size && (
+            <div>
+              <dt className="afs-preview-text-heading">size</dt>
+              <dd className="afs-preview-text">{formatSize(item.size)}</dd>
+            </div>
+          )}
           {item.modified && (
             <div>
               <dt className="afs-preview-text-heading">modified</dt>
-              <dd>{new Date(item.modified).toLocaleString()}</dd>
+              <dd className="afs-preview-text">
+                {new Date(item.modified).toLocaleString()}
+              </dd>
             </div>
           )}
         </dl>
