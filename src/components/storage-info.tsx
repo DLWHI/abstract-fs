@@ -1,7 +1,5 @@
-"use client";
-
-import { StorageInfo as Info } from "@/lib/model";
-import { useTranslations } from "next-intl";
+import type { StorageInfo as Info } from "../lib/types";
+import "./storage-info.css";
 
 function formatStorage(
   bytes: number,
@@ -21,40 +19,25 @@ function formatStorage(
 }
 
 export function StorageInfo({ info }: { info: Info }) {
-  const t = useTranslations("storage");
-  const units = [t("b"), t("kb"), t("mb"), t("gb"), t("tb")];
-  const fract = Math.round((info.used / info.total) * 100);
+  const units = ["b", "kb", "mb", "gb", "tb", "pb"];
+  const fract = Math.round(((info.used / info.total) * 1000) / 10);
   return (
-    <section className="h-fit flex flex-col gap-1 rounded border border-secondary bg-foreground px-4 py-2">
-      <div className="flex items-center justify-between gap-4">
-        <div>
-          <h2 className="text-lg font-semibold">
-            {t("free", { value: formatStorage(info.free, units) })}
-          </h2>
-        </div>
-        <span className="text-sm opacity-70">
-          {t("fract", { value: fract })}
-        </span>
+    <section className="afs-info-container">
+      <div className="afs-flex-bar">
+        <p className="afs-info-heading">free</p>
+        <span className="afs-info-text">fract</span>
       </div>
       <div
-        className="h-2 overflow-hidden rounded-full bg-background"
+        className="afs-rate-container"
         role="progressbar"
         aria-label="Storage used"
         aria-valuemin={0}
         aria-valuemax={100}
         aria-valuenow={fract}
       >
-        <div
-          className="h-full rounded-full bg-focus"
-          style={{ width: `${fract}%` }}
-        />
+        <div className="afs-rate-bar" style={{ width: `${fract}%` }} />
       </div>
-      <p className="text-xs opacity-60">
-        {t("used", {
-          used: formatStorage(info.used, units),
-          total: formatStorage(info.total, units),
-        })}
-      </p>
+      <p className="afs-info-text">used</p>
     </section>
   );
 }

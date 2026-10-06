@@ -1,0 +1,35 @@
+.afs-info-container {
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  border-radius: 0.25rem;
+  border: 1px solid var(--afs-border);
+  background-color: var(--afs-foreground);
+  padding: 0.5rem 1rem;
+}
+
+.afs-info-heading {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  font-weight: 600;
+}
+
+.afs-info-text {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  opacity: 0.7;
+}
+
+.afs-rate-container {
+  height: 0.5rem; /* 8px */
+  overflow: hidden;
+  border-radius: 9999px;
+  background-color: var(--afs-secondary);
+}
+
+.afs-rate-bar {
+  height: 100%;
+  border-radius: 9999px;
+  background-color: var(--afs-special);
+}

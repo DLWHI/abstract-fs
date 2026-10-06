@@ -1,0 +1,27 @@
+:root {
+  --afs-background: #d3d4ec;
+  --afs-foreground: #c8c9e0;
+  --afs-toolbar: #caccd1;
+  --afs-on-background: #0e0e0e;
+  --afs-on-foreground: #222222;
+  --afs-secondary: #8f8f8f;
+  --afs-special: #006492;
+  --afs-on-special: #181818;
+  --afs-foreground-focus: #283b2f;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root[data-theme="dark"],
+  .dark {
+    --afs-background: #181818;
+    --afs-foreground: #181818;
+    --afs-inner: #2e303a;
+    --afs-inner-hover: #4e5269;
+    --afs-on-background: #bfbfbf;
+    --afs-on-foreground: #ffffff;
+    --afs-secondary: #8f8f8f;
+    --afs-special: #2596be;
+    --afs-on-special: #181818;
+    --afs-foreground-focus: #283b2f;
+  }
+}

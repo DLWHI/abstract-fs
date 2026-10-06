@@ -1,0 +1,37 @@
+.afs-file-list-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.afs-file-list-content {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid var(--afs-secondary);
+}
+
+.afs-file-table-list {
+  display: grid;
+  grid-template-columns: 36px minmax(0, 1fr) 120px 180px;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: var(--afs-secondary);
+  padding-left: 1rem; /* px-4 */
+  padding-right: 1rem; /* px-4 */
+  padding-top: 0.5rem; /* py-2 */
+  padding-bottom: 0.5rem; /* py-2 */
+  gap: 0.5rem; /* gap-2 */
+}
+
+.afs-file-table-header {
+  font-size: 0.75rem; /* 12px */
+  line-height: 1rem; /* 16px */
+  text-transform: uppercase;
+  color: var(--afs-on-foreground);
+  background-color: var(--afs-foreground);
+}

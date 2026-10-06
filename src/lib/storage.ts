@@ -1,4 +1,4 @@
-import { StorageEntity } from "./model";
+import type { StorageEntity } from "./types";
 
 export function isFolder(item: StorageEntity) {
   return item.type == "folder";
@@ -41,17 +41,16 @@ export function typeOf(item: StorageEntity) {
 
 export function storageFileUrl(id: string) {
   if (id.startsWith("http://") || id.startsWith("https://")) {
-    return id
+    return id;
   }
-  return `${process.env.NEXT_PUBLIC_ADMIN_BASE_PATH}/api/storage/${id.split("/").map(encodeURIComponent).join("/")}`;
+  return `/api/storage/${id.split("/").map(encodeURIComponent).join("/")}`;
 }
-
 
 export function storagePreviewUrl(id: string) {
   if (id.startsWith("http://") || id.startsWith("https://")) {
-    return id
+    return id;
   }
-  return `${process.env.NEXT_PUBLIC_ADMIN_BASE_PATH}/api/preview/${id.split("/").map(encodeURIComponent).join("/")}`;
+  return `/api/preview/${id.split("/").map(encodeURIComponent).join("/")}`;
 }
 
 export function isFileMedia(candidate: File) {

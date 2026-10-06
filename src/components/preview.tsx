@@ -1,12 +1,9 @@
-"use client";
-
-import TrashBin from "@/components/svg/trash-bin.svg";
+import TrashBin from "../assets/trash-bin.svg?react";
 import { useTransition } from "react";
-import { StorageEntity } from "@/lib/model";
-import { itemName, formatSize, typeOf } from "@/lib/storage";
-import { useTranslations } from "next-intl";
-import Link from "next/link";
-import { Spinner } from "@/components/ui";
+import type { StorageEntity } from "../lib/types";
+import { itemName, formatSize, typeOf } from "../lib/storage";
+import { Spinner } from "./spinner";
+import "./preview.css";
 
 export type SourceURLProvider = (item: StorageEntity) => string;
 export type PreviewURLProvider = (item: StorageEntity) => string;
@@ -24,28 +21,25 @@ export function Preview({
   preview?: PreviewURLProvider;
   onDelete?: DeleteEventHandler;
 }) {
-  const t = useTranslations("storage");
   const [loading, startTransition] = useTransition();
 
   if (loading) {
     return (
-      <aside className="h-full min-h-0 overflow-hidden p-4">
-        <div className="flex flex-col size-full items-center justify-center gap-4">
-          <div className="h-1/5">
+      <aside className="afs-preview-container">
+        <div className="afs-preview-placeholder">
+          <div className="afs-preview-loading-container">
             <Spinner />
           </div>
-          <span className="text-center text-on-foreground">{t("loading")}</span>
+          <span className="afs-preview-placeholder-text">loading</span>
         </div>
       </aside>
     );
   }
   if (!item) {
     return (
-      <aside className="h-full min-h-0 overflow-hidden p-4">
-        <div className="flex size-full items-center justify-center rounded-lg border border-dashed border-secondary ">
-          <span className="text-center text-sm text-secondary">
-            {t("preview")}
-          </span>
+      <aside className="afs-preview-container">
+        <div className="afs-preview-placeholder-card">
+          <span className="afs-preview-placeholder-text">preview</span>
         </div>
       </aside>
     );
@@ -70,76 +64,68 @@ export function Preview({
   };
 
   return (
-    <aside className="flex min-h-0 min-w-0 h-full flex-col overflow-hidden rounded border border-secondary bg-foreground gap-2 p-4">
-      <div className="flex items-center justify-between">
-        <h2 className="break-words text-lg font-semibold truncate">
-          {itemName(item)}
-        </h2>
+    <aside className="afs-preview-container">
+      <div className="afs-flex-bar">
+        <h2 className="afs-preview-title">{itemName(item)}</h2>
         {onDelete && (
           <button
-            className="button rounded p-2"
+            className="afs-preview-delete"
             onClick={() => startTransition(async () => await onDelete(item))}
           >
-            <TrashBin className="text-on-foreground size-6" />
+            <TrashBin width={24} height={24} />
           </button>
         )}
       </div>
 
-      <div className="min-h-0 flex-1 overflow-y-auto">
+      <div className="afs-preview-content">
         {preview && type == "image" && (
-          <div className="relative h-3/5 min-h-0 min-w-0 overflow-hidden rounded">
-            <img
-              src={preview(item)}
-              alt={itemName(item)}
-              className="absolute inset-0 size-full object-contain"
-            />
-          </div>
-        )}
-
-        {preview && type == "video" && (
-          <video
+          <img
             src={preview(item)}
-            controls
-            className="h-3/5 min-h-0 min-w-0 overflow-hidden rounded"
+            alt={itemName(item)}
+            className="afs-preview"
           />
         )}
 
+        {preview && type == "video" && (
+          <video src={preview(item)} controls className="afs-preview" />
+        )}
+
         {url && type != "folder" && (
-          <div className="flex flex-wrap gap-2">
-            <Link
-              className="button rounded px-4 py-2 text-sm"
+          <div className="afs-preview-toolbar">
+            <a
+              className="afs-preview-button"
               href={url}
               target="_blank"
               rel="noreferrer"
             >
-              {t("open")}
-            </Link>
+              open
+            </a>
             <button
               type="button"
-              className="button rounded px-4 py-2 text-sm"
+              className="afs-preview-button"
               onClick={download}
             >
-              {t("download")}
+              download
             </button>
           </div>
         )}
 
-        <dl className="min-h-0 grid grid-cols-2 grid-rows-2 gap-2 text-sm">
+        <dl className="afs-preview-info">
           <div>
-            <dt className="text-secondary line-clamp-2">{t("path")}</dt>
-            <dd className="break-all">{item.id}</dd>
+            <dt className="afs-preview-text-heading">path</dt>
+            <dd className="afs-preview-text-break">{item.id}</dd>
           </div>
           <div>
-            <dt className="text-secondary">{t("type")}</dt>
-            <dd>{t(type)}</dd>
+            <dt className="afs-preview-text-heading">type</dt>
+            <dd>type</dd>
           </div>
           <div>
-            <dt className="text-secondary">{t("size")}</dt>
+            <dt className="afs-preview-text-heading">size</dt>
             <dd>{formatSize(item.size)}</dd>
           </div>
           {item.modified && (
             <div>
-              <dt className="text-secondary">{t("modified")}</dt>
+              <dt className="afs-preview-text-heading">modified</dt>
               <dd>{new Date(item.modified).toLocaleString()}</dd>
             </div>
           )}

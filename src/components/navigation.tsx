@@ -1,8 +1,7 @@
-"use client";
-
-import BackArrow from "@/components/svg/back-arrow.svg";
+import BackArrow from "../assets/back-arrow.svg?react";
 import { Fragment } from "react";
-import { parentPath } from "@/lib/storage";
+import { parentPath } from "../lib/storage";
+import "./navigation.css";
 
 export function StorageNavigation({
   path,
@@ -16,21 +15,19 @@ export function StorageNavigation({
   const segments = path.split("/").filter(Boolean);
   let renderPath = "";
   return (
-    <nav
-      className="flex items-center gap-4 text-on-foreground"
-      aria-label="Storage path"
-    >
+    <nav className="afs-navbar-container" aria-label="Storage path">
       <button
         type="button"
+        className="afs-navbar-path-element"
         onClick={() => navigate(parentPath(path))}
         disabled={!path || loading}
       >
-        <BackArrow className="w-8 h-8" />
+        <BackArrow width={32} height={32} />
       </button>
       <span className="flex gap-2">
         <button
           type="button"
-          className="hover:text-focus cursor-pointer"
+          className="afs-navbar-path-element"
           onClick={() => navigate("")}
           disabled={!path || loading}
         >
@@ -45,7 +42,7 @@ export function StorageNavigation({
               <button
                 type="button"
                 key={path}
-                className="hover:text-focus cursor-pointer"
+                className="afs-navbar-path-element"
                 onClick={() => navigate(path)}
                 disabled={loading}
               >

@@ -24,6 +24,8 @@ import type { StorageEntity, StorageInfo } from "../lib/types";
 import { isFolder } from "../lib/storage";
 import { Loading } from "./loading";
 
+import "./browser.css";
+
 export interface Content {
   files: StorageEntity[];
   info: StorageInfo;
@@ -64,7 +66,7 @@ export function AbstractFileBrowser({
 }: StorageBrowserProps) {
   const [items, setItems] = useState<StorageEntity[]>(initialItems);
   const [info, setInfo] = useState<StorageInfo | undefined>(storageInfo);
-  const [path, setPath] = useState(initialPath);
+  const [path, setPath] = useState(initialPath ? initialPath : "/");
   const [selected, setSelected] = useState<StorageEntity | null>(null);
   const [loading, startTransition] = useTransition();
 
@@ -129,20 +131,17 @@ export function AbstractFileBrowser({
   }, [initialItems.length, initialPath, load]);
 
   return (
-    <div
-      className="flex min-h-0 h-full flex-col text-on-background"
-      onClick={() => setSelected(null)}
-    >
-      <div className="flex items-center bg-inner/50 justify-between gap-4 border-b border-secondary px-4 py-2">
+    <div className="afs-browser" onClick={() => setSelected(null)}>
+      <div className="afs-browser-header-bar">
         <StorageNavigation path={path} loading={loading} navigate={navigate} />
-        <StorageUpload
+        {/* <StorageUpload
           path={path}
           onFolderCreate={createFolder}
           onUpload={upload}
-        />
+        /> */}
       </div>
-      <div className="min-h-0 flex-1 overflow-hidden grid xl:grid-rows-[minmax(0,1fr)_auto] xl:grid-cols-[minmax(0,1fr)_340px]">
-        <div className="row-span-2 min-h-0">
+      <div className="afs-browser-content">
+        <div className="afs-browser-list-container">
           {loading ? (
             <Loading />
           ) : (
@@ -155,7 +154,7 @@ export function AbstractFileBrowser({
             />
           )}
         </div>
-        <div className="min-h-0 min-w-0 overflow-hidden">
+        <div className="afs-browser-preview-container">
           <Preview
             source={sources}
             preview={previews}

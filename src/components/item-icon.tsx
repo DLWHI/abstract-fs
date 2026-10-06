@@ -1,9 +1,9 @@
-import FolderIcon from "@/components/svg/folder.svg";
-import FileIcon from "@/components/svg/file.svg";
-import ImageIcon from "@/components/svg/image.svg";
-import VideoIcon from "@/components/svg/video.svg";
-import { StorageEntity } from "@/lib/model";
-import { isFolder, isImage, isVideo } from "@/lib/storage";
+import FolderIcon from "../assets/folder.svg?react";
+import FileIcon from "../assets/file.svg?react";
+import ImageIcon from "../assets/image.svg?react";
+import VideoIcon from "../assets/video.svg?react";
+import type { StorageEntity } from "../lib/types";
+import { isFolder, isImage, isVideo } from "../lib/storage";
 
 export function ItemIcon({
   item,
