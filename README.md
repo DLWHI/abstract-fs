@@ -1,2 +1,80 @@
 # abstract-fs
-Backend agnostic, zero (almost) dependency react component for browsing file systems 
+
+Simple, backend agnostic, minimal dependency react component for browsing file systems
+
+## Usage
+
+Define content and info source and import component into your app:
+
+```jsx
+import { AbstractFileBrowser } from "abstract-fs";
+import "abstract-fs/style.css";  // import styles so everything looks pretty
+
+const provider = async (path) => {
+    const tree = await fetch(`${STORAGE_HOST}/tree/${path}`);
+    const disk = await fetch(`${STORAGE_HOST}/info/`);
+
+    if (tree.ok && disk.ok) {
+      const files = await tree.json();
+      const info = await disk.json();
+      return { files, info };
+    }
+
+      return { files: [] };
+  };
+
+createRoot(document.getElementById("root")).render(
+  <StrictMode>
+    <AbstractFileBrowser provider={provider} />
+  </StrictMode>,
+);
+
+```
+
+By default `<AbstractFileBrowser />` takes all available parent space. You can wrap it in container if you want to constraint it (minimal height for browser is `500px`):
+
+```jsx
+export default function App() {
+  return (
+    <div style={{width: "75%", height: 1024}}>
+      <AbstractFileBrowser
+        provider={provider}
+      />
+    </div>
+  );
+}
+```
+
+## Documentation
+
+Coming soon...
+
+## Features
+
+### Backend-agnostic by design
+
+Connect the browser to your own storage service with a `provider` callback. The library renders the interface; your application remains in control of data access and file operations.
+
+### Composable UI
+
+Use the complete `<AbstractFileBrowser />` or build a custom layout from the exported file list, navigation, and preview components.
+
+### Optional file actions and previews
+
+Provide callbacks for upload, folder creation, and deletion to enable those actions. Supply URL callbacks to show image or video previews and offer open and download links. Omit the optional callbacks when those capabilities are not needed.
+
+### Typed data and selection access
+
+TypeScript types are included for file entries, storage information, provider results, and component props. An optional `selectedRef` exposes the currently selected entry to the host application.
+
+### Localization support
+
+Customize individual labels or provide a translation callback, so the interface can fit the terminology and language of your application.
+
+### Lightweight integration
+
+React and React DOM are the runtime peer dependencies. The library ships its CSS and SVG assets with the built package; Vite, TypeScript, and SVGR are used to build the library, not required as runtime dependencies by consuming applications.
+
+## Need Help?
+
+[Post an Issue](https://github.com/DLWHI/abstract-fs-server/issues) or feel free to email me.
