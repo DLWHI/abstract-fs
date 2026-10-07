@@ -1,6 +1,5 @@
 import {
   type Ref,
-  useCallback,
   useEffect,
   useImperativeHandle,
   useState,
@@ -21,7 +20,7 @@ import {
   type UploadEventHandler,
 } from "./upload";
 import type { StorageEntity, StorageInfo } from "../lib/types";
-import { isFolder } from "../lib/util";
+import { isFolder, sortStorageEntities } from "../lib/util";
 import { Loading } from "./loading";
 
 import "../index.css";
@@ -30,7 +29,7 @@ import { getLabel, type LabelProvider, type Labels } from "../i18n/types";
 
 export interface Content {
   files: StorageEntity[];
-  info: StorageInfo;
+  info?: StorageInfo;
 }
 
 export type ContentProvider = (path: string) => Promise<Content> | Content;
@@ -70,7 +69,9 @@ export function AbstractFileBrowser({
   labels,
   t,
 }: StorageBrowserProps) {
-  const [items, setItems] = useState<StorageEntity[]>(initialItems);
+  const [items, setItems] = useState<StorageEntity[]>(
+    initialItems.length ? sortStorageEntities(initialItems) : initialItems,
+  );
   const [info, setInfo] = useState<StorageInfo | undefined>(storageInfo);
   const [path, setPath] = useState(initialPath ? initialPath : "/");
   const [selected, setSelected] = useState<StorageEntity | null>(null);
@@ -84,14 +85,15 @@ export function AbstractFileBrowser({
     [selected],
   );
 
-  const load = useCallback((nextPath: string, keepSelection = false) => {
+  const load = (nextPath: string, keepSelection = false) => {
+    if (loading) return;
     startTransition(async () => {
       const data = await provider(nextPath);
-      setItems(data.files);
+      setItems(sortStorageEntities(data.files));
       setInfo(data.info);
       if (!keepSelection) setSelected(null);
     });
-  }, []);
+  };
 
   const navigate = (nextPath: string) => {
     setPath(nextPath);
@@ -134,7 +136,7 @@ export function AbstractFileBrowser({
 
   useEffect(() => {
     if (!initialItems.length) load(initialPath);
-  }, [initialItems.length, initialPath, load]);
+  }, [initialItems.length, initialPath]);
 
   return (
     <div className="afs-browser" onClick={() => setSelected(null)}>

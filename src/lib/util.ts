@@ -46,3 +46,11 @@ export function isFileMedia(candidate: File) {
     candidate.type.startsWith("image/") || candidate.type.startsWith("video/")
   );
 }
+
+export function sortStorageEntities(list: StorageEntity[]) {
+  return [...list].sort(
+    (a, b) =>
+      Number(isFolder(b)) - Number(isFolder(a)) ||
+      itemName(a).localeCompare(itemName(b)),
+  );
+}

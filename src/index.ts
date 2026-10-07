@@ -29,5 +29,7 @@ export {
   itemName,
   parentPath,
   typeOf,
+  sortStorageEntities,
 } from "./lib/util";
 export type { Labels, LabelProvider } from "./i18n/types";
+export type { StorageEntity, StorageInfo } from "./lib/types";

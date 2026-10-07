@@ -128,9 +128,9 @@ export function Preview({
             <dt className="afs-preview-text-heading">
               {getLabel("type", labels, t)}
             </dt>
-            <dd className="afs-preview-text">type</dd>
+            <dd className="afs-preview-text">{getLabel(type, labels, t)}</dd>
           </div>
-          {item.size && (
+          {!(item.size == null) && (
             <div>
               <dt className="afs-preview-text-heading">
                 {getLabel("size", labels, t)}

@@ -24,18 +24,12 @@ export function FileList({
   labels?: Partial<Labels>;
   t?: LabelProvider;
 }) {
-  const sorted = [...items].sort(
-    (a, b) =>
-      Number(isFolder(b)) - Number(isFolder(a)) ||
-      itemName(a).localeCompare(itemName(b)),
-  );
-
   return (
     <div className="afs-file-list-container">
       <div className="afs-file-list-content">
-        <FileListHeader />
+        <FileListHeader labels={labels} t={t} />
         <div className="afs-file-table-body">
-          {sorted.map((item) => (
+          {items.map((item) => (
             <FileListRow
               key={item.id}
               item={item}
@@ -45,7 +39,7 @@ export function FileList({
               selected={selected ? item.id == selected.id : false}
             />
           ))}
-          {!sorted.length && (
+          {!items.length && (
             <div className="afs-file-table-placeholder">
               <span className="afs-file-table-placeholder-text">
                 {getLabel("empty", labels, t)}
@@ -100,6 +94,15 @@ function FileListRow({
       onClick={(e) => {
         onSelect(item);
         e.stopPropagation();
+      }}
+      onKeyDown={(e) => {
+        if (e.key === "Enter") {
+          if (folder) {
+            onFolderOpen(item);
+          } else if (onFileOpen) {
+            onFileOpen(item);
+          }
+        }
       }}
       onDoubleClick={() => {
         if (folder) {

@@ -1,35 +1,72 @@
 {
   "name": "abstract-fs",
-  "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "description": "Simple, backend agnostic, minimal dependency react component for browsing file systems",
+  "keywords": [
+    "file",
+    "browser",
+    "filebrowser",
+    "filesystem",
+    "server",
+    "backend",
+    "backend-agnostic",
+    "minimal",
+    "react",
+    "component",
+    "minimalist",
+    "ui",
+    "universal",
+    "buildable",
+    "system"
+  ],
+  "homepage": "https://github.com/DLWHI/abstract-fs-server#readme",
+  "bugs": {
+    "url": "https://github.com/DLWHI/abstract-fs-server/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/DLWHI/abstract-fs-server.git"
+  },
+  "license": "MIT",
+  "author": "dlwhi",
   "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    },
+    "./style.css": "./dist/style.css"
+  },
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"
   },
-  "dependencies": {
-    "react": "^19.2.8",
-    "react-dom": "^19.2.8"
+  "peerDependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.29.7",
-    "@eslint/js": "^10.0.1",
-    "@rolldown/plugin-babel": "^0.2.3",
-    "@types/babel__core": "^7.20.5",
-    "@types/node": "^24.13.3",
-    "@types/react": "^19.2.18",
-    "@types/react-dom": "^19.2.7",
-    "@vitejs/plugin-react": "^6.1.1",
-    "babel-plugin-react-compiler": "^1.0.0",
-    "eslint": "^10.10.0",
-    "eslint-plugin-react-hooks": "^7.1.1",
-    "eslint-plugin-react-refresh": "^0.5.6",
-    "globals": "^17.12.0",
-    "typescript": "~6.0.2",
-    "typescript-eslint": "^8.69.0",
-    "vite": "^8.3.0",
-    "vite-plugin-svgr": "^5.2.0"
+    "@eslint/js": "^9.39.1",
+    "@types/node": "^20.19.0",
+    "@types/react": "^19.0.0",
+    "@vitejs/plugin-react": "^4.7.0",
+    "eslint": "^9.39.1",
+    "eslint-plugin-react-hooks": "^7.0.0",
+    "eslint-plugin-react-refresh": "^0.4.24",
+    "globals": "^16.5.0",
+    "typescript": "~5.8.3",
+    "typescript-eslint": "^8.38.0",
+    "vite": "^6.4.1",
+    "vite-plugin-dts": "^5.1.2",
+    "vite-plugin-svgr": "^4.3.0"
   }
 }

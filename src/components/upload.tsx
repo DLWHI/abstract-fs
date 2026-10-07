@@ -66,13 +66,9 @@ function StorageFolderDialog({
     let folderName = name.trim();
     if (!folderName) folderName = "New folder";
     startTransition(async () => {
-      try {
-        await onCreate(path, folderName);
-        if (popoverRef.current) {
-          popoverRef.current.hidePopover();
-        }
-      } catch {
-        return;
+      await onCreate(folderName, path);
+      if (popoverRef.current) {
+        popoverRef.current.hidePopover();
       }
     });
   };
