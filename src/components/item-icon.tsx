@@ -3,7 +3,7 @@ import FileIcon from "../assets/file.svg?react";
 import ImageIcon from "../assets/image.svg?react";
 import VideoIcon from "../assets/video.svg?react";
 import type { StorageEntity } from "../lib/types";
-import { isFolder, isImage, isVideo } from "../lib/storage";
+import { isFolder, isImage, isVideo } from "../lib/util";
 
 export function ItemIcon({
   item,

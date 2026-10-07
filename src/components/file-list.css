@@ -55,6 +55,7 @@
 .afs-file-table-placeholder-text {
   text-align: center;
   color: var(--afs-secondary);
+  font-family: var(--afs-font);
 }
 
 .afs-file-table-element {

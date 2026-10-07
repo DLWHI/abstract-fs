@@ -10,6 +10,7 @@
 }
 
 .afs-info-heading {
+  margin: 0;
   font-size: 1.125rem;
   line-height: 1.75rem;
   font-weight: 600;
@@ -17,6 +18,7 @@
 }
 
 .afs-info-text {
+  margin: 0;
   font-size: 0.875rem;
   line-height: 1.25rem;
   opacity: 0.7;

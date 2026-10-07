@@ -21,11 +21,12 @@ import {
   type UploadEventHandler,
 } from "./upload";
 import type { StorageEntity, StorageInfo } from "../lib/types";
-import { isFolder } from "../lib/storage";
+import { isFolder } from "../lib/util";
 import { Loading } from "./loading";
 
 import "../index.css";
 import "./browser.css";
+import type { LabelProvider, Labels } from "../i18n/types";
 
 export interface Content {
   files: StorageEntity[];
@@ -50,6 +51,8 @@ export interface StorageBrowserProps {
   onDelete?: DeleteEventHandler;
   onUpload?: UploadEventHandler;
   onFolderCreate?: FolderCreateEventHandler;
+  labels?: Partial<Labels>;
+  t?: LabelProvider;
 }
 
 export function AbstractFileBrowser({
@@ -64,6 +67,8 @@ export function AbstractFileBrowser({
   onDoubleClick,
   onUpload,
   provider,
+  labels,
+  t,
 }: StorageBrowserProps) {
   const [items, setItems] = useState<StorageEntity[]>(initialItems);
   const [info, setInfo] = useState<StorageInfo | undefined>(storageInfo);
@@ -139,6 +144,8 @@ export function AbstractFileBrowser({
           path={path}
           onFolderCreate={createFolder}
           onUpload={upload}
+          labels={labels}
+          t={t}
         />
       </div>
       <div className="afs-browser-content">
@@ -152,6 +159,8 @@ export function AbstractFileBrowser({
               onSelect={selectItem}
               onFolderOpen={openFolder}
               onFileOpen={onDoubleClick}
+              labels={labels}
+              t={t}
             />
           )}
         </div>
@@ -161,9 +170,13 @@ export function AbstractFileBrowser({
             preview={previews}
             item={selected}
             onDelete={erase}
+            labels={labels}
+            t={t}
           />
         </div>
-        {info != undefined && <StorageInfoDisplay info={info} />}
+        {info != undefined && (
+          <StorageInfoDisplay labels={labels} t={t} info={info} />
+        )}
       </div>
     </div>
   );

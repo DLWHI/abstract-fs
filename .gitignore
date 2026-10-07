@@ -1,4 +1,7 @@
 package-lock.json
+src/main.jsx
+src/App.jsx
+config.json
 # Logs
 logs
 *.log

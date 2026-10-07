@@ -29,4 +29,4 @@ export {
   itemName,
   parentPath,
   typeOf,
-} from "./lib/storage";
+} from "./lib/util";

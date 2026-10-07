@@ -1,6 +1,6 @@
 import BackArrow from "../assets/back-arrow.svg?react";
 import { Fragment } from "react";
-import { parentPath } from "../lib/storage";
+import { parentPath } from "../lib/util";
 import "./navigation.css";
 
 export type NavigationEventHandler = (path: string) => void;

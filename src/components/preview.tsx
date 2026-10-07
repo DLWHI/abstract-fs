@@ -1,9 +1,10 @@
 import TrashBin from "../assets/trash-bin.svg?react";
 import { useTransition } from "react";
 import type { StorageEntity } from "../lib/types";
-import { itemName, formatSize, typeOf } from "../lib/storage";
+import { itemName, formatSize, typeOf } from "../lib/util";
 import { Loading } from "./loading";
 import "./preview.css";
+import { type Labels, type LabelProvider, getLabel } from "../i18n/types";
 
 export type SourceURLProvider = (item: StorageEntity) => string;
 export type PreviewURLProvider = (item: StorageEntity) => string;
@@ -15,11 +16,15 @@ export function Preview({
   source,
   preview,
   onDelete,
+  labels,
+  t,
 }: {
   item: StorageEntity | null;
   source?: SourceURLProvider;
   preview?: PreviewURLProvider;
   onDelete?: DeleteEventHandler;
+  labels?: Partial<Labels>;
+  t?: LabelProvider;
 }) {
   const [loading, startTransition] = useTransition();
 
@@ -34,7 +39,9 @@ export function Preview({
     return (
       <aside className="afs-preview-container">
         <div className="afs-preview-placeholder-card">
-          <span className="afs-preview-placeholder-text">preview</span>
+          <span className="afs-preview-placeholder-text">
+            {getLabel("preview", labels, t)}
+          </span>
         </div>
       </aside>
     );
@@ -96,38 +103,46 @@ export function Preview({
               target="_blank"
               rel="noreferrer"
             >
-              open
+              {getLabel("open", labels, t)}
             </a>
             <button
               type="button"
               className="afs-preview-button afs-animated"
               onClick={download}
             >
-              download
+              {getLabel("download", labels, t)}
             </button>
           </div>
         )}
 
         <dl className="afs-preview-info">
           <div>
-            <dt className="afs-preview-text-heading">path</dt>
+            <dt className="afs-preview-text-heading">
+              {getLabel("path", labels, t)}
+            </dt>
             <dd className="afs-preview-text-break afs-preview-text">
               {item.id}
             </dd>
           </div>
           <div>
-            <dt className="afs-preview-text-heading">type</dt>
+            <dt className="afs-preview-text-heading">
+              {getLabel("type", labels, t)}
+            </dt>
             <dd className="afs-preview-text">type</dd>
           </div>
           {item.size && (
             <div>
-              <dt className="afs-preview-text-heading">size</dt>
+              <dt className="afs-preview-text-heading">
+                {getLabel("size", labels, t)}
+              </dt>
               <dd className="afs-preview-text">{formatSize(item.size)}</dd>
             </div>
           )}
           {item.modified && (
             <div>
-              <dt className="afs-preview-text-heading">modified</dt>
+              <dt className="afs-preview-text-heading">
+                {getLabel("modified", labels, t)}
+              </dt>
               <dd className="afs-preview-text">
                 {new Date(item.modified).toLocaleString()}
               </dd>

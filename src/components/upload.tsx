@@ -1,8 +1,8 @@
 import { Spinner } from "./spinner";
 import type { ChangeEvent } from "react";
 import { useRef, useState, useTransition, type SubmitEvent } from "react";
+import { type Labels, type LabelProvider, getLabel } from "../i18n/types";
 import "./upload.css";
-import { Loading } from "./loading";
 
 export type UploadEventHandler = (
   file: File,
@@ -18,18 +18,29 @@ export function StorageUpload({
   path,
   onUpload,
   onFolderCreate,
+  labels,
+  t,
 }: {
   path: string;
   onUpload?: UploadEventHandler;
   onFolderCreate?: FolderCreateEventHandler;
+  labels?: Partial<Labels>;
+  t?: LabelProvider;
 }) {
   return (
     <>
       <div className="afs-upload-bar">
         {onFolderCreate && (
-          <StorageFolderDialog path={path} onCreate={onFolderCreate} />
+          <StorageFolderDialog
+            path={path}
+            onCreate={onFolderCreate}
+            labels={labels}
+            t={t}
+          />
         )}
-        {onUpload && <UploadButton path={path} onUpload={onUpload} />}
+        {onUpload && (
+          <UploadButton path={path} onUpload={onUpload} labels={labels} t={t} />
+        )}
       </div>
     </>
   );
@@ -38,9 +49,13 @@ export function StorageUpload({
 export function StorageFolderDialog({
   path,
   onCreate,
+  labels,
+  t,
 }: {
   path: string;
   onCreate: FolderCreateEventHandler;
+  labels?: Partial<Labels>;
+  t?: LabelProvider;
 }) {
   const [loading, startTransition] = useTransition();
   const [name, setName] = useState("");
@@ -74,7 +89,7 @@ export function StorageFolderDialog({
         popoverTarget="afs-folder-form"
         id="afs-create-folder-button"
       >
-        Create folder
+        {getLabel("create_folder", labels, t)}
       </button>
       <div
         ref={popoverRef}
@@ -101,10 +116,10 @@ export function StorageFolderDialog({
                 }
               }}
             >
-              cancel
+              {getLabel("cancel", labels, t)}
             </button>
             <button type="submit" className="afs-upload-button afs-animated">
-              add_folder
+              {getLabel("confirm", labels, t)}
             </button>
           </div>
         </form>
@@ -116,9 +131,13 @@ export function StorageFolderDialog({
 export function UploadButton({
   path,
   onUpload,
+  labels,
+  t,
 }: {
   path: string;
   onUpload: UploadEventHandler;
+  labels?: Partial<Labels>;
+  t?: LabelProvider;
 }) {
   const inputRef = useRef<HTMLInputElement>(null);
   const [loading, startTransition] = useTransition();
@@ -163,7 +182,7 @@ export function UploadButton({
         onChange={upload}
         style={{ display: "none" }}
       />
-      <span className="w-min">upload</span>
+      <span className="w-min">{getLabel("upload", labels, t)}</span>
     </button>
   );
 }
