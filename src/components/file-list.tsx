@@ -37,11 +37,11 @@ export function FileList({
               onSelect={onSelect}
               onFileOpen={onFileOpen}
               onFolderOpen={onFolderOpen}
-              selected={item.id == selected?.id}
+              selected={selected ? item.id == selected.id : false}
             />
           ))}
           {!sorted.length && (
-            <div className="afs-file-table-body-placeholder">
+            <div className="afs-file-table-placeholder">
               <span className="afs-file-table-placeholder-text">empty</span>
             </div>
           )}
@@ -83,8 +83,14 @@ export function FileListRow({
         onSelect(item);
         e.stopPropagation();
       }}
-      onDoubleClick={() => (folder ? onFolderOpen(item) : onFileOpen?.(item))}
-      className={`afs-file-table-list afs-file-table-element ${selected ? "afs-file-table-selected" : "afs-file-table-element-selectable"}`}
+      onDoubleClick={() => {
+        if (folder) {
+          onFolderOpen(item);
+        } else if (onFileOpen) {
+          onFileOpen(item);
+        }
+      }}
+      className={`afs-file-table-list afs-animated afs-file-table-element ${selected ? "afs-file-table-selected" : "afs-file-table-element-selectable"}`}
     >
       <ItemIcon item={item} width={32} height={32} aria-hidden="true" />
       <span className="afs-file-table-filename">{itemName(item)}</span>

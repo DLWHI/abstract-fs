@@ -21,9 +21,10 @@ import {
   type UploadEventHandler,
 } from "./upload";
 import type { StorageEntity, StorageInfo } from "../lib/types";
-import { isFolder } from "../lib/storage";
+import { isFolder, parentPath } from "../lib/storage";
 import { Loading } from "./loading";
 
+import "../index.css";
 import "./browser.css";
 
 export interface Content {
@@ -33,6 +34,10 @@ export interface Content {
 
 export type ContentProvider = (path: string) => Promise<Content> | Content;
 
+export interface FileSelectorHandle {
+  getSelected: () => StorageEntity | null;
+}
+
 export interface StorageBrowserProps {
   initialItems?: StorageEntity[];
   initialPath?: string;
@@ -41,26 +46,22 @@ export interface StorageBrowserProps {
   provider: ContentProvider;
   previews?: PreviewURLProvider;
   sources?: SourceURLProvider;
-  onFileOpen?: ItemOpenEventHandler;
+  onDoubleClick?: ItemOpenEventHandler;
   onDelete?: DeleteEventHandler;
   onUpload?: UploadEventHandler;
   onFolderCreate?: FolderCreateEventHandler;
 }
 
-export interface FileSelectorHandle {
-  getSelected: () => StorageEntity | null;
-}
-
 export function AbstractFileBrowser({
   initialItems = [],
-  initialPath = "",
+  initialPath = "/",
   storageInfo,
   selectedRef,
   sources,
   previews,
   onDelete,
   onFolderCreate,
-  onFileOpen,
+  onDoubleClick,
   onUpload,
   provider,
 }: StorageBrowserProps) {
@@ -134,11 +135,11 @@ export function AbstractFileBrowser({
     <div className="afs-browser" onClick={() => setSelected(null)}>
       <div className="afs-browser-header-bar">
         <StorageNavigation path={path} loading={loading} navigate={navigate} />
-        {/* <StorageUpload
+        <StorageUpload
           path={path}
           onFolderCreate={createFolder}
           onUpload={upload}
-        /> */}
+        />
       </div>
       <div className="afs-browser-content">
         <div className="afs-browser-list-container">
@@ -150,7 +151,7 @@ export function AbstractFileBrowser({
               selected={selected}
               onSelect={selectItem}
               onFolderOpen={openFolder}
-              onFileOpen={onFileOpen}
+              onFileOpen={onDoubleClick}
             />
           )}
         </div>

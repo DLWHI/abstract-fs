@@ -1,25 +1,25 @@
 import type { StorageInfo as Info } from "../lib/types";
 import "./storage-info.css";
 
-function formatStorage(
-  bytes: number,
-  units: string[],
-  decimals: number = 2,
-): string {
-  if (bytes === 0) return "0 B";
-  if (bytes < 0) return `-${formatStorage(Math.abs(bytes), units, decimals)}`;
+// function formatStorage(
+//   bytes: number,
+//   units: string[],
+//   decimals: number = 2,
+// ): string {
+//   if (bytes === 0) return "0 B";
+//   if (bytes < 0) return `-${formatStorage(Math.abs(bytes), units, decimals)}`;
 
-  const k = 1024; // Use 1000 for decimal units (e.g. standard macOS / network speed)
-  const i = Math.floor(Math.log(bytes) / Math.log(k));
+//   const k = 1024; // Use 1000 for decimal units (e.g. standard macOS / network speed)
+//   const i = Math.floor(Math.log(bytes) / Math.log(k));
 
-  const unitIndex = Math.min(i, units.length - 1);
-  const value = bytes / Math.pow(k, unitIndex);
+//   const unitIndex = Math.min(i, units.length - 1);
+//   const value = bytes / Math.pow(k, unitIndex);
 
-  return `${parseFloat(value.toFixed(decimals))} ${units[unitIndex]}`;
-}
+//   return `${parseFloat(value.toFixed(decimals))} ${units[unitIndex]}`;
+// }
 
 export function StorageInfo({ info }: { info: Info }) {
-  const units = ["b", "kb", "mb", "gb", "tb", "pb"];
+  // const units = ["b", "kb", "mb", "gb", "tb", "pb"];
   const fract = Math.round(((info.used / info.total) * 1000) / 10);
   return (
     <section className="afs-info-container">

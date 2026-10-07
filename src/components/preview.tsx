@@ -59,12 +59,15 @@ export function Preview({
   };
 
   return (
-    <aside className="afs-preview-container">
+    <aside
+      className="afs-preview-container"
+      onClick={(e) => e.stopPropagation()}
+    >
       <div className="afs-flex-bar">
         <h2 className="afs-preview-title">{itemName(item)}</h2>
         {onDelete && (
           <button
-            className="afs-preview-delete"
+            className="afs-preview-delete afs-animated"
             onClick={() => startTransition(async () => await onDelete(item))}
           >
             <TrashBin width={24} height={24} />
@@ -88,7 +91,7 @@ export function Preview({
         {url && type != "folder" && (
           <div className="afs-preview-toolbar">
             <a
-              className="afs-preview-button"
+              className="afs-preview-button afs-animated"
               href={url}
               target="_blank"
               rel="noreferrer"
@@ -97,7 +100,7 @@ export function Preview({
             </a>
             <button
               type="button"
-              className="afs-preview-button"
+              className="afs-preview-button afs-animated"
               onClick={download}
             >
               download

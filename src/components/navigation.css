@@ -2,6 +2,7 @@
   display: flex;
   align-items: center;
   gap: 0.5rem; /* 16px */
+  font-family: var(--afs-font);
 }
 
 .afs-navbar-path-element {
@@ -10,9 +11,6 @@
   background-color: transparent;
   border: none;
   cursor: pointer;
-  transition: color;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 250ms;
 }
 
 .afs-navbar-path-element:hover {

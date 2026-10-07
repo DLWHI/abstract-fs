@@ -20,7 +20,9 @@ export function formatSize(size?: number) {
 }
 
 export function isImage(item: StorageEntity) {
-  return item.type == "image" || /\.(png|jpe?g|gif|webp|avif)$/i.test(item.id);
+  return (
+    item.type == "image" || /\.(png|jpe?g|gif|webp|avif|svg)$/i.test(item.id)
+  );
 }
 
 export function isVideo(item: StorageEntity) {
@@ -37,20 +39,6 @@ export function typeOf(item: StorageEntity) {
   } else {
     return "file";
   }
-}
-
-export function storageFileUrl(id: string) {
-  if (id.startsWith("http://") || id.startsWith("https://")) {
-    return id;
-  }
-  return `/api/storage/${id.split("/").map(encodeURIComponent).join("/")}`;
-}
-
-export function storagePreviewUrl(id: string) {
-  if (id.startsWith("http://") || id.startsWith("https://")) {
-    return id;
-  }
-  return `/api/preview/${id.split("/").map(encodeURIComponent).join("/")}`;
 }
 
 export function isFileMedia(candidate: File) {

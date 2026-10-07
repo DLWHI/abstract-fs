@@ -13,12 +13,14 @@
   font-size: 1.125rem;
   line-height: 1.75rem;
   font-weight: 600;
+  font-family: var(--afs-font);
 }
 
 .afs-info-text {
   font-size: 0.875rem;
   line-height: 1.25rem;
   opacity: 0.7;
+  font-family: var(--afs-font);
 }
 
 .afs-rate-container {
