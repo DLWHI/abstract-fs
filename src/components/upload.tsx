@@ -1,7 +1,8 @@
-import { isFileMedia } from "../lib/storage";
 import { Spinner } from "./spinner";
 import type { ChangeEvent } from "react";
 import { useRef, useState, useTransition, type SubmitEvent } from "react";
+import "./upload.css";
+import { Loading } from "./loading";
 
 export type UploadEventHandler = (
   file: File,
@@ -24,7 +25,7 @@ export function StorageUpload({
 }) {
   return (
     <>
-      <div className="flex h-full w-1/3">
+      <div className="afs-upload-bar">
         {onFolderCreate && (
           <StorageFolderDialog path={path} onCreate={onFolderCreate} />
         )}
@@ -42,13 +43,13 @@ export function StorageFolderDialog({
   onCreate: FolderCreateEventHandler;
 }) {
   const [loading, startTransition] = useTransition();
-  const [name, setName] = useState("New folder");
+  const [name, setName] = useState("");
   const popoverRef = useRef<HTMLDivElement>(null);
 
   const submit = (event: SubmitEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const folderName = name.trim();
-    if (!folderName) return;
+    let folderName = name.trim();
+    if (!folderName) folderName = "New folder";
     startTransition(async () => {
       try {
         await onCreate(path, folderName);
@@ -61,45 +62,39 @@ export function StorageFolderDialog({
     });
   };
 
+  if (loading) {
+    return <Spinner />;
+  }
+
   return (
     <>
-      {loading ? (
-        <button
-          type="button"
-          className="afs-upload-button"
-          onClick={() => {
-            if (popoverRef.current) {
-              popoverRef.current.hidePopover();
-            }
-          }}
-        >
-          Create folder
-        </button>
-      ) : (
-        <Spinner />
-      )}
+      <button
+        type="button"
+        className="afs-upload-button afs-animated"
+        popoverTarget="afs-folder-form"
+        id="afs-create-folder-button"
+      >
+        Create folder
+      </button>
       <div
         ref={popoverRef}
-        popover="manual"
-        className="afs-upload-folder-container"
+        popover="auto"
+        id="afs-folder-form"
+        className="afs-create-folder-popover"
       >
-        <form
-          onSubmit={submit}
-          className="flex flex-col gap-2 w-full max-w-md rounded-3xl bg-foreground p-6 text-on-background"
-        >
-          <h2 className="text-xl font-semibold">add_folder</h2>
+        <form onSubmit={submit} className="afs-create-folder-form">
+          <h2 className="afs-create-folder-form-header">add_folder</h2>
           <input
             autoFocus
             value={name}
             onChange={(e) => setName(e.target.value)}
-            placeholder={"name_folder"}
-            className="w-full px-4 h-10 rounded bg-foreground focus:outline-focus outline-1 outline-inner"
-            required
+            placeholder="New folder"
+            className="afs-create-folder-input"
           />
-          <div className="flex justify-end gap-2">
+          <div className="afs-create-folder-confirm">
             <button
               type="button"
-              className="button rounded-3xl px-4 py-2"
+              className="afs-upload-button afs-animated"
               onClick={() => {
                 if (popoverRef.current) {
                   popoverRef.current.hidePopover();
@@ -108,7 +103,7 @@ export function StorageFolderDialog({
             >
               cancel
             </button>
-            <button type="submit" className="button rounded-3xl px-4 py-2">
+            <button type="submit" className="afs-upload-button afs-animated">
               add_folder
             </button>
           </div>
@@ -128,13 +123,13 @@ export function UploadButton({
   const inputRef = useRef<HTMLInputElement>(null);
   const [loading, startTransition] = useTransition();
 
-  const uploadDirect = (event: ChangeEvent<HTMLInputElement>) => {
+  const upload = (event: ChangeEvent<HTMLInputElement>) => {
     let next: File | null = null;
     if (event.target.files && event.target.files[0]) {
       next = event.target.files[0];
     }
 
-    if (!next || !isFileMedia(next)) {
+    if (!next) {
       event.target.value = "";
       return;
     }
@@ -147,10 +142,14 @@ export function UploadButton({
     });
   };
 
+  if (loading) {
+    return <Spinner />;
+  }
+
   return (
     <button
       type="button"
-      className="button rounded-3xl px-4 py-2"
+      className="afs-upload-button afs-animated"
       disabled={loading}
       onClick={() => {
         if (inputRef.current) {
@@ -161,9 +160,8 @@ export function UploadButton({
       <input
         ref={inputRef}
         type="file"
-        accept="image/*,video/*"
-        onChange={uploadDirect}
-        className="hidden"
+        onChange={upload}
+        style={{ display: "none" }}
       />
       <span className="w-min">upload</span>
     </button>

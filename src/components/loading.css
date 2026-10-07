@@ -8,6 +8,7 @@
   color: var(--afs-on-foreground);
   font-size: 1.5rem;
   gap: 0.5rem;
+  font-family: var(--afs-font);
 }
 
 .afs-loading-spinner-container {

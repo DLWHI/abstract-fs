@@ -21,7 +21,7 @@ import {
   type UploadEventHandler,
 } from "./upload";
 import type { StorageEntity, StorageInfo } from "../lib/types";
-import { isFolder, parentPath } from "../lib/storage";
+import { isFolder } from "../lib/storage";
 import { Loading } from "./loading";
 
 import "../index.css";

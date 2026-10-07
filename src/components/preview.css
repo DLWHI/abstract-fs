@@ -48,13 +48,15 @@
 }
 
 .afs-preview-delete {
-  color: var(--afs-foreground);
+  color: var(--afs-on-foreground);
   border-radius: 0.25rem;
+  border-style: none;
   padding: 0.5rem;
+  background-color: transparent;
 }
 
 .afs-preview-delete:hover {
-  color: var(--afs-special);
+  background-color: var(--afs-special);
 }
 
 .afs-preview-content {

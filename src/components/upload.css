@@ -1,42 +1,100 @@
-.afs-upload-button {
-  border-radius: 1.5rem;
-  padding: 1rem 0.5rem;
+.afs-upload-bar {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  width: 33%;
+  height: 100%;
 }
 
-.afs-upload-button:hover {
-  background-color: var(--special);
-}
-
-.afs-folder-container {
-  border: none;
-  border-radius: 1rem;
-  padding: 1.5rem;
-  max-width: 30rem;
-  width: 90%;
-  background-color: #ffffff;
+.afs-create-folder-popover {
+  margin: 0;
+  inset: auto;
+  position-area: bottom span-left;
   box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
-
   opacity: 0;
-  transform: scale(0.95);
+  transform: translateY(-10px);
   transition:
     opacity 250ms cubic-bezier(0.4, 0, 0.2, 1),
     transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
-    display 250ms allow-discrete;
+    display 250ms cubic-bezier(0.4, 0, 0.2, 1) allow-discrete,
+    overlay 0.3s cubic-bezier(0.4, 0, 0.2, 1) allow-discrete;
+  color: var(--afs-on-background);
+  font-family: var(--afs-font);
+  border: 1px solid var(--afs-on-background);
+  border-radius: 1rem;
+  background-color: var(--afs-background);
+  padding: 0.5rem 1rem;
+  width: 18rem;
+  overflow-x: visible;
 }
 
-.afs-folder-container[open] {
+.afs-create-folder-popover:popover-open {
   opacity: 1;
-  transform: scale(1);
+  transform: translateY(0);
+  transition:
+    opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    display 0.3s cubic-bezier(0.4, 0, 0.2, 1) allow-discrete,
+    overlay 0.3s cubic-bezier(0.4, 0, 0.2, 1) allow-discrete;
 }
 
-.afs-folder-form {
+@starting-style {
+  .afs-create-folder-popover:popover-open {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}
+
+.afs-create-folder-backdrop {
+  position: fixed;
+  inset: 0;
+}
+
+.afs-create-folder-form {
   display: flex;
   flex-direction: column;
   gap: 0.5rem; /* 8px */
   width: 100%;
-  max-width: 28rem; /* 448px */
-  border-radius: 1.5rem /* 24px */;
-  background-color: var(--foreground);
-  padding: 1.5rem; /* 24px */
-  color: var(--on-background);
+}
+
+.afs-create-folder-form-header {
+  font-size: 1rem; /* 20px */
+  line-height: 1.5rem; /* 28px */
+  font-weight: 500;
+}
+
+.afs-create-folder-input {
+  padding-left: 1rem; /* 16px */
+  padding-right: 1rem; /* 16px */
+  height: 2.5rem; /* 40px */
+  border-radius: 0.25rem; /* 4px */
+  border-style: solid;
+  border-color: none;
+  background-color: var(--afs-foreground);
+  outline-width: 1px;
+  outline-color: var(--afs-on-foreground);
+}
+
+.afs-create-folder-input:focus {
+  outline-color: var(--afs-special);
+}
+
+.afs-create-folder-confirm {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
+
+.afs-upload-button {
+  border-radius: 1.5rem;
+  border-style: none;
+  color: var(--foreground);
+  background-color: transparent;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  font-family: var(--afs-font);
+}
+
+.afs-upload-button:hover {
+  background-color: var(--afs-special);
 }
