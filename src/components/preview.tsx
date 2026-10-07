@@ -31,7 +31,7 @@ export function Preview({
   if (loading) {
     return (
       <aside className="afs-preview-container">
-        <Loading />
+        <Loading label={getLabel("loading", labels, t)} />
       </aside>
     );
   }

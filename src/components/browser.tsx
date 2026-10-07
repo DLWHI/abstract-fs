@@ -26,7 +26,7 @@ import { Loading } from "./loading";
 
 import "../index.css";
 import "./browser.css";
-import type { LabelProvider, Labels } from "../i18n/types";
+import { getLabel, type LabelProvider, type Labels } from "../i18n/types";
 
 export interface Content {
   files: StorageEntity[];
@@ -151,7 +151,7 @@ export function AbstractFileBrowser({
       <div className="afs-browser-content">
         <div className="afs-browser-list-container">
           {loading ? (
-            <Loading />
+            <Loading label={getLabel("loading", labels, t)} />
           ) : (
             <FileList
               items={items}

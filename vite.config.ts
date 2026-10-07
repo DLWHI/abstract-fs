@@ -7,7 +7,9 @@ import vitePluginSvgr from "vite-plugin-svgr";
 export default defineConfig({
   plugins: [
     react(),
-    vitePluginSvgr(),
+    vitePluginSvgr({
+      include: "**/*.svg?react",
+    }),
     dts({
       tsconfigPath: "./tsconfig.app.json",
     }),
