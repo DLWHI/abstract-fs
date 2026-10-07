@@ -6,8 +6,6 @@
   --afs-on-foreground: #222222;
   --afs-secondary: #8f8f8f;
   --afs-special: #006492;
-  --afs-on-special: #181818;
-  --afs-foreground-focus: #283b2f;
 }
 
 @media (prefers-color-scheme: dark) {

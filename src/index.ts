@@ -30,3 +30,4 @@ export {
   parentPath,
   typeOf,
 } from "./lib/util";
+export type { Labels, LabelProvider } from "./i18n/types";

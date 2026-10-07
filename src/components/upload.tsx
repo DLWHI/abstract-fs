@@ -46,7 +46,7 @@ export function StorageUpload({
   );
 }
 
-export function StorageFolderDialog({
+function StorageFolderDialog({
   path,
   onCreate,
   labels,
@@ -128,7 +128,7 @@ export function StorageFolderDialog({
   );
 }
 
-export function UploadButton({
+function UploadButton({
   path,
   onUpload,
   labels,

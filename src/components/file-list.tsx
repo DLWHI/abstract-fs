@@ -58,7 +58,7 @@ export function FileList({
   );
 }
 
-export function FileListHeader({
+function FileListHeader({
   labels,
   t,
 }: {
@@ -75,7 +75,7 @@ export function FileListHeader({
   );
 }
 
-export function FileListRow({
+function FileListRow({
   item,
   selected,
   onSelect,
