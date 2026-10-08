@@ -1,6 +1,6 @@
 {
   "name": "abstract-fs",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Simple, backend agnostic, minimal dependency react component for browsing file systems",
   "keywords": [
     "file",
