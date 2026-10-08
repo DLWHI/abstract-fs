@@ -1,9 +1,10 @@
 import {
   type Ref,
+  useCallback,
   useEffect,
   useImperativeHandle,
+  useRef,
   useState,
-  useTransition,
 } from "react";
 import { StorageNavigation } from "./navigation";
 import { StorageInfo as StorageInfoDisplay } from "./storage-info";
@@ -75,7 +76,8 @@ export function AbstractFileBrowser({
   const [info, setInfo] = useState<StorageInfo | undefined>(storageInfo);
   const [path, setPath] = useState(initialPath ? initialPath : "/");
   const [selected, setSelected] = useState<StorageEntity | null>(null);
-  const [loading, startTransition] = useTransition();
+  const [loading, setLoading] = useState(false);
+  const requestId = useRef(0);
 
   useImperativeHandle(
     selectedRef,
@@ -85,15 +87,26 @@ export function AbstractFileBrowser({
     [selected],
   );
 
-  const load = (nextPath: string, keepSelection = false) => {
-    if (loading) return;
-    startTransition(async () => {
-      const data = await provider(nextPath);
-      setItems(sortStorageEntities(data.files));
-      setInfo(data.info);
-      if (!keepSelection) setSelected(null);
-    });
-  };
+  const load = useCallback(
+    async (nextPath: string, keepSelection = false) => {
+      const id = ++requestId.current;
+      setLoading(true);
+      try {
+        const data = await provider(nextPath);
+        if (id !== requestId.current) return;
+        setItems(sortStorageEntities(data.files));
+        setInfo(data.info);
+        if (!keepSelection) setSelected(null);
+      } catch (error) {
+        // set error
+      } finally {
+        if (id === requestId.current) {
+          setLoading(false);
+        }
+      }
+    },
+    [provider],
+  );
 
   const navigate = (nextPath: string) => {
     setPath(nextPath);
@@ -136,7 +149,7 @@ export function AbstractFileBrowser({
 
   useEffect(() => {
     if (!initialItems.length) load(initialPath);
-  }, [initialItems.length, initialPath]);
+  }, [initialItems.length, initialPath, load]);
 
   return (
     <div className="afs-browser" onClick={() => setSelected(null)}>
