@@ -6,7 +6,7 @@ export {
   type ExplorerProps as StorageBrowserProps,
 } from "./components/browser";
 export {
-  StorageNavigation as ReactFSExplorerNavigation,
+  StorageNavigation as ReactFSNavigation,
   type NavigationEventHandler,
 } from "./components/navigation";
 export {
