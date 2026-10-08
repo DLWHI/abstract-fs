@@ -1,4 +1,7 @@
+import { getLabel, type LabelProvider, type Labels } from "../i18n/types";
 import type { StorageEntity } from "./types";
+
+const UNITS = ["b", "kb", "mb", "gb", "tb", "pb"] as const;
 
 export function isFolder(item: StorageEntity) {
   return item.type == "folder";
@@ -12,11 +15,22 @@ export function parentPath(path: string) {
   return path.split("/").filter(Boolean).slice(0, -1).join("/");
 }
 
-export function formatSize(size?: number) {
-  if (size == null) return "Size unavailable";
-  if (size < 1024) return `${size} B`;
-  if (size < 1024 * 1024) return `${(size / 1024).toFixed(1)} KB`;
-  return `${(size / 1024 / 1024).toFixed(1)} MB`;
+export function formatSize(
+  bytes: number,
+  decimals: number = 2,
+  labels?: Partial<Labels>,
+  t?: LabelProvider,
+): string {
+  if (bytes === 0) return "0 B";
+  if (bytes < 0) return `-${formatSize(Math.abs(bytes), decimals)}`;
+
+  const k = 1024; // Use 1000 for decimal units (e.g. standard macOS / network speed)
+  const i = Math.floor(Math.log(bytes) / Math.log(k));
+
+  const unitIndex = Math.min(i, UNITS.length - 1);
+  const value = bytes / Math.pow(k, unitIndex);
+
+  return `${parseFloat(value.toFixed(decimals))} ${getLabel(UNITS[unitIndex], labels, t)}`;
 }
 
 export function isImage(item: StorageEntity) {
@@ -30,12 +44,12 @@ export function isVideo(item: StorageEntity) {
 }
 
 export function typeOf(item: StorageEntity) {
-  if (item.type == "folder") {
-    return "folder";
-  } else if (isImage(item)) {
+  if (isImage(item)) {
     return "image";
   } else if (isVideo(item)) {
     return "video";
+  } else if (item.type == "folder") {
+    return "folder";
   } else {
     return "file";
   }

@@ -2,15 +2,27 @@
 
 Simple, backend agnostic, minimal dependency react component for browsing file systems
 
+## Requirements
+
+Requires React 19 and React DOM 19 to be installed in your target project.
+
+## Installation
+
+```sh
+npm install react-fs-explorer
+```
+
+Alternatively, you can download source code and run `npm run build` to build it in place. Then link `dist/` directory in source folder to your project and start using file browser.
+
 ## Usage
 
 Define content and info source and import component into your app:
 
-```jsx
-import { ReactFSExplorer } from "react-fs-explorer";
+```tsx
+import { FSExplorer } from "react-fs-explorer";
 import "react-fs-explorer/style.css";  // import styles so everything looks pretty
 
-const provider = async (path) => {
+const provider = async (path: string) => {
     const tree = await fetch(`${STORAGE_HOST}/tree/${path}`);
     const disk = await fetch(`${STORAGE_HOST}/info/`);
 
@@ -25,19 +37,19 @@ const provider = async (path) => {
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <ReactFSExplorer provider={provider} />
+    <FSExplorer provider={provider} />
   </StrictMode>,
 );
 
 ```
 
-By default `<ReactFSExplorer />` takes all available parent space. You can wrap it in container if you want to constraint it (minimal height for browser is `500px`):
+By default `<FSExplorer />` takes all available parent space. You can wrap it in container if you want to constraint it (minimal height for browser is `500px`):
 
-```jsx
+```tsx
 export default function App() {
   return (
     <div style={{width: "75%", height: 1024}}>
-      <ReactFSExplorer
+      <FSExplorer
         provider={provider}
       />
     </div>
@@ -47,7 +59,7 @@ export default function App() {
 
 ## Documentation
 
-Coming soon...
+There's github hosted wiki that covers all required aspect of this library. Also, there is offline Markdown styled docs available at []
 
 ## Features
 
@@ -57,7 +69,7 @@ Connect the browser to your own storage service with a `provider` callback. The 
 
 ### Composable UI
 
-Use the complete `<ReactFSExplorer />` or build a custom layout from the exported file list, navigation, and preview components.
+Use the complete `<FSExplorer />` or build a custom layout from the exported file list, navigation, and preview components.
 
 ### Optional file actions and previews
 

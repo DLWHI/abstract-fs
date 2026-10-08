@@ -55,7 +55,7 @@ export interface ExplorerProps {
   t?: LabelProvider;
 }
 
-export function ReactFSExplorer({
+export function FSExplorer({
   initialItems = [],
   initialPath = "/",
   storageInfo,

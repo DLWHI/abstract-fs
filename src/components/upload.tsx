@@ -7,7 +7,6 @@ import "./upload.css";
 export type UploadEventHandler = (
   file: File,
   path: string,
-  setProgress?: (value: number) => void,
 ) => Promise<void> | void;
 export type FolderCreateEventHandler = (
   name: string,

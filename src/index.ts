@@ -1,25 +1,26 @@
 export {
-  ReactFSExplorer,
+  FSExplorer,
   type Content,
   type ContentProvider,
   type FileSelectorHandle,
   type ExplorerProps,
 } from "./components/browser";
 export {
-  StorageNavigation as ReactFSNavigation,
+  StorageNavigation as FSNavigation,
   type NavigationEventHandler,
 } from "./components/navigation";
 export {
-  Preview as ReactFSPreview,
+  Preview as FSFilePreview,
   type SourceURLProvider,
   type PreviewURLProvider,
   type DeleteEventHandler,
 } from "./components/preview";
 export {
-  FileList as ReactFSList,
+  FileList as FSFileList,
   type ItemOpenEventHandler,
   type ItemSelectEventHandler,
 } from "./components/file-list";
+export { StorageInfo as FSStorageInfo } from "./components/storage-info";
 export {
   isFileMedia,
   isVideo,
