@@ -97,8 +97,6 @@ export function AbstractFileBrowser({
         setItems(sortStorageEntities(data.files));
         setInfo(data.info);
         if (!keepSelection) setSelected(null);
-      } catch (error) {
-        // set error
       } finally {
         if (id === requestId.current) {
           setLoading(false);
