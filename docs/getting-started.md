@@ -154,3 +154,7 @@ See [components.md](components.md#FSExplorer) for complete reference of props.
 `<FSExplorer />` exposes `t` and `labels` property for user to provide localization. See [localization.md](localization.md)  
 To customize apperance one can override inner class names or colors, for more information, see [styles.md](styles.md)  
 `<FSExplorer />` is built using some static building components that can be used outside of it (ex. `<ReactFilePreview />`). See [components.md](components.md) for complete list.
+
+## Examples
+
+If you need server to provide you file or some example reference [there is repository](https://github.com/DLWHI/react-fs-server) that provides working example of this library and hostable server.
