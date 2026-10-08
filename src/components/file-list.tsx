@@ -25,10 +25,10 @@ export function FileList({
   t?: LabelProvider;
 }) {
   return (
-    <div className="afs-file-list-container">
-      <div className="afs-file-list-content">
+    <div className="rfe-file-list-container">
+      <div className="rfe-file-list-content">
         <FileListHeader labels={labels} t={t} />
-        <div className="afs-file-table-body">
+        <div className="rfe-file-table-body">
           {items.map((item) => (
             <FileListRow
               key={item.id}
@@ -40,8 +40,8 @@ export function FileList({
             />
           ))}
           {!items.length && (
-            <div className="afs-file-table-placeholder">
-              <span className="afs-file-table-placeholder-text">
+            <div className="rfe-file-table-placeholder">
+              <span className="rfe-file-table-placeholder-text">
                 {getLabel("empty", labels, t)}
               </span>
             </div>
@@ -60,7 +60,7 @@ function FileListHeader({
   t?: LabelProvider;
 }) {
   return (
-    <div className="afs-file-table-list afs-file-table-header">
+    <div className="rfe-file-table-list rfe-file-table-header">
       <div />
       <span>{getLabel("name", labels, t)}</span>
       <span>{getLabel("type", labels, t)}</span>
@@ -111,14 +111,14 @@ function FileListRow({
           onFileOpen(item);
         }
       }}
-      className={`afs-file-table-list afs-animated afs-file-table-element ${selected ? "afs-file-table-selected" : "afs-file-table-element-selectable"}`}
+      className={`rfe-file-table-list rfe-animated rfe-file-table-element ${selected ? "rfe-file-table-selected" : "rfe-file-table-element-selectable"}`}
     >
       <ItemIcon item={item} width={32} height={32} aria-hidden="true" />
-      <span className="afs-file-table-filename">{itemName(item)}</span>
-      <span className="afs-file-table-text">
+      <span className="rfe-file-table-filename">{itemName(item)}</span>
+      <span className="rfe-file-table-text">
         {getLabel(typeOf(item), labels, t)}
       </span>
-      <span className="afs-file-table-text">
+      <span className="rfe-file-table-text">
         {item.modified
           ? new Date(item.modified).toLocaleString()
           : formatSize(item.size)}

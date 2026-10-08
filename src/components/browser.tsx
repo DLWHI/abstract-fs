@@ -39,7 +39,7 @@ export interface FileSelectorHandle {
   getSelected: () => StorageEntity | null;
 }
 
-export interface StorageBrowserProps {
+export interface ExplorerProps {
   initialItems?: StorageEntity[];
   initialPath?: string;
   storageInfo?: StorageInfo;
@@ -55,7 +55,7 @@ export interface StorageBrowserProps {
   t?: LabelProvider;
 }
 
-export function AbstractFileBrowser({
+export function ReactFSExplorer({
   initialItems = [],
   initialPath = "/",
   storageInfo,
@@ -69,7 +69,7 @@ export function AbstractFileBrowser({
   provider,
   labels,
   t,
-}: StorageBrowserProps) {
+}: ExplorerProps) {
   const [items, setItems] = useState<StorageEntity[]>(
     initialItems.length ? sortStorageEntities(initialItems) : initialItems,
   );
@@ -150,8 +150,8 @@ export function AbstractFileBrowser({
   }, [initialItems.length, initialPath, load]);
 
   return (
-    <div className="afs-browser" onClick={() => setSelected(null)}>
-      <div className="afs-browser-header-bar">
+    <div className="rfe-browser" onClick={() => setSelected(null)}>
+      <div className="rfe-browser-header-bar">
         <StorageNavigation path={path} loading={loading} navigate={navigate} />
         <StorageUpload
           path={path}
@@ -161,8 +161,8 @@ export function AbstractFileBrowser({
           t={t}
         />
       </div>
-      <div className="afs-browser-content">
-        <div className="afs-browser-list-container">
+      <div className="rfe-browser-content">
+        <div className="rfe-browser-list-container">
           {loading ? (
             <Loading label={getLabel("loading", labels, t)} />
           ) : (
@@ -177,7 +177,7 @@ export function AbstractFileBrowser({
             />
           )}
         </div>
-        <div className="afs-browser-preview-container">
+        <div className="rfe-browser-preview-container">
           <Preview
             source={sources}
             preview={previews}

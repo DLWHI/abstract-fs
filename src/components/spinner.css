@@ -1,16 +1,16 @@
-.afs-spinner {
+.rfe-spinner {
   aspect-ratio: 1 / 1;
   width: 100cqmin;
   height: 100cqmin;
   border-width: 2px;
   border-style: solid;
   border-color: transparent;
-  border-top-color: var(--afs-special);
+  border-top-color: var(--rfe-special);
   border-radius: 9999px;
   animation: spin 1s linear infinite;
 }
 
-.afs-spinner-container {
+.rfe-spinner-container {
   container-type: size;
   display: flex;
   justify-content: center;

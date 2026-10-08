@@ -1,25 +1,25 @@
 :root {
-  --afs-background: #d3d4ec;
-  --afs-foreground: #c8c9e0;
-  --afs-toolbar: #caccd1;
-  --afs-on-background: #0e0e0e;
-  --afs-on-foreground: #222222;
-  --afs-secondary: #8f8f8f;
-  --afs-special: #006492;
+  --rfe-background: #d3d4ec;
+  --rfe-foreground: #c8c9e0;
+  --rfe-toolbar: #caccd1;
+  --rfe-on-background: #0e0e0e;
+  --rfe-on-foreground: #222222;
+  --rfe-secondary: #8f8f8f;
+  --rfe-special: #006492;
 }
 
 @media (prefers-color-scheme: dark) {
   :root[data-theme="dark"],
   .dark {
-    --afs-background: #181818;
-    --afs-foreground: #181818;
-    --afs-inner: #2e303a;
-    --afs-inner-hover: #4e5269;
-    --afs-on-background: #bfbfbf;
-    --afs-on-foreground: #ffffff;
-    --afs-secondary: #8f8f8f;
-    --afs-special: #2596be;
-    --afs-on-special: #181818;
-    --afs-foreground-focus: #283b2f;
+    --rfe-background: #181818;
+    --rfe-foreground: #181818;
+    --rfe-inner: #2e303a;
+    --rfe-inner-hover: #4e5269;
+    --rfe-on-background: #bfbfbf;
+    --rfe-on-foreground: #ffffff;
+    --rfe-secondary: #8f8f8f;
+    --rfe-special: #2596be;
+    --rfe-on-special: #181818;
+    --rfe-foreground-focus: #283b2f;
   }
 }

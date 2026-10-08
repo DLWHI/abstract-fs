@@ -1,18 +1,18 @@
-.afs-navbar-container {
+.rfe-navbar-container {
   display: flex;
   align-items: center;
   gap: 0.5rem; /* 16px */
-  font-family: var(--afs-font);
+  font-family: var(--rfe-font);
 }
 
-.afs-navbar-path-element {
+.rfe-navbar-path-element {
   font-size: larger;
-  color: var(--afs-on-foreground);
+  color: var(--rfe-on-foreground);
   background-color: transparent;
   border: none;
   cursor: pointer;
 }
 
-.afs-navbar-path-element:hover {
-  color: var(--afs-special);
+.rfe-navbar-path-element:hover {
+  color: var(--rfe-special);
 }

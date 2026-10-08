@@ -30,16 +30,16 @@ export function Preview({
 
   if (loading) {
     return (
-      <aside className="afs-preview-container">
+      <aside className="rfe-preview-container">
         <Loading label={getLabel("loading", labels, t)} />
       </aside>
     );
   }
   if (!item) {
     return (
-      <aside className="afs-preview-container">
-        <div className="afs-preview-placeholder-card">
-          <span className="afs-preview-placeholder-text">
+      <aside className="rfe-preview-container">
+        <div className="rfe-preview-placeholder-card">
+          <span className="rfe-preview-placeholder-text">
             {getLabel("preview", labels, t)}
           </span>
         </div>
@@ -67,14 +67,14 @@ export function Preview({
 
   return (
     <aside
-      className="afs-preview-container"
+      className="rfe-preview-container"
       onClick={(e) => e.stopPropagation()}
     >
-      <div className="afs-flex-bar">
-        <h2 className="afs-preview-title">{itemName(item)}</h2>
+      <div className="rfe-flex-bar">
+        <h2 className="rfe-preview-title">{itemName(item)}</h2>
         {onDelete && (
           <button
-            className="afs-preview-delete afs-animated"
+            className="rfe-preview-delete rfe-animated"
             onClick={() => startTransition(async () => await onDelete(item))}
           >
             <TrashBin width={24} height={24} />
@@ -82,23 +82,23 @@ export function Preview({
         )}
       </div>
 
-      <div className="afs-preview-content">
+      <div className="rfe-preview-content">
         {preview && type == "image" && (
           <img
             src={preview(item)}
             alt={itemName(item)}
-            className="afs-preview"
+            className="rfe-preview"
           />
         )}
 
         {preview && type == "video" && (
-          <video src={preview(item)} controls className="afs-preview" />
+          <video src={preview(item)} controls className="rfe-preview" />
         )}
 
         {url && type != "folder" && (
-          <div className="afs-preview-toolbar">
+          <div className="rfe-preview-toolbar">
             <a
-              className="afs-preview-button afs-animated"
+              className="rfe-preview-button rfe-animated"
               href={url}
               target="_blank"
               rel="noreferrer"
@@ -107,7 +107,7 @@ export function Preview({
             </a>
             <button
               type="button"
-              className="afs-preview-button afs-animated"
+              className="rfe-preview-button rfe-animated"
               onClick={download}
             >
               {getLabel("download", labels, t)}
@@ -115,35 +115,35 @@ export function Preview({
           </div>
         )}
 
-        <dl className="afs-preview-info">
+        <dl className="rfe-preview-info">
           <div>
-            <dt className="afs-preview-text-heading">
+            <dt className="rfe-preview-text-heading">
               {getLabel("path", labels, t)}
             </dt>
-            <dd className="afs-preview-text-break afs-preview-text">
+            <dd className="rfe-preview-text-break rfe-preview-text">
               {item.id}
             </dd>
           </div>
           <div>
-            <dt className="afs-preview-text-heading">
+            <dt className="rfe-preview-text-heading">
               {getLabel("type", labels, t)}
             </dt>
-            <dd className="afs-preview-text">{getLabel(type, labels, t)}</dd>
+            <dd className="rfe-preview-text">{getLabel(type, labels, t)}</dd>
           </div>
           {!(item.size == null) && (
             <div>
-              <dt className="afs-preview-text-heading">
+              <dt className="rfe-preview-text-heading">
                 {getLabel("size", labels, t)}
               </dt>
-              <dd className="afs-preview-text">{formatSize(item.size)}</dd>
+              <dd className="rfe-preview-text">{formatSize(item.size)}</dd>
             </div>
           )}
           {item.modified && (
             <div>
-              <dt className="afs-preview-text-heading">
+              <dt className="rfe-preview-text-heading">
                 {getLabel("modified", labels, t)}
               </dt>
-              <dd className="afs-preview-text">
+              <dd className="rfe-preview-text">
                 {new Date(item.modified).toLocaleString()}
               </dd>
             </div>

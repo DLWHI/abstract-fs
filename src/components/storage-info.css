@@ -1,39 +1,39 @@
-.afs-info-container {
+.rfe-info-container {
   height: fit-content;
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
   border-radius: 0.25rem;
-  border: 1px solid var(--afs-border);
-  background-color: var(--afs-foreground);
+  border: 1px solid var(--rfe-border);
+  background-color: var(--rfe-foreground);
   padding: 0.5rem 1rem;
 }
 
-.afs-info-heading {
+.rfe-info-heading {
   margin: 0;
   font-size: 1.125rem;
   line-height: 1.75rem;
   font-weight: 600;
-  font-family: var(--afs-font);
+  font-family: var(--rfe-font);
 }
 
-.afs-info-text {
+.rfe-info-text {
   margin: 0;
   font-size: 0.875rem;
   line-height: 1.25rem;
   opacity: 0.7;
-  font-family: var(--afs-font);
+  font-family: var(--rfe-font);
 }
 
-.afs-rate-container {
+.rfe-rate-container {
   height: 0.5rem; /* 8px */
   overflow: hidden;
   border-radius: 9999px;
-  background-color: var(--afs-secondary);
+  background-color: var(--rfe-secondary);
 }
 
-.afs-rate-bar {
+.rfe-rate-bar {
   height: 100%;
   border-radius: 9999px;
-  background-color: var(--afs-special);
+  background-color: var(--rfe-special);
 }

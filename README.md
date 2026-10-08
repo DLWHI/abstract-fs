@@ -1,4 +1,4 @@
-# abstract-fs
+# react-fs-explorer
 
 Simple, backend agnostic, minimal dependency react component for browsing file systems
 
@@ -7,8 +7,8 @@ Simple, backend agnostic, minimal dependency react component for browsing file s
 Define content and info source and import component into your app:
 
 ```jsx
-import { AbstractFileBrowser } from "abstract-fs";
-import "abstract-fs/style.css";  // import styles so everything looks pretty
+import { ReactFSExplorer } from "react-fs-explorer";
+import "react-fs-explorer/style.css";  // import styles so everything looks pretty
 
 const provider = async (path) => {
     const tree = await fetch(`${STORAGE_HOST}/tree/${path}`);
@@ -25,19 +25,19 @@ const provider = async (path) => {
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <AbstractFileBrowser provider={provider} />
+    <ReactFSExplorer provider={provider} />
   </StrictMode>,
 );
 
 ```
 
-By default `<AbstractFileBrowser />` takes all available parent space. You can wrap it in container if you want to constraint it (minimal height for browser is `500px`):
+By default `<ReactFSExplorer />` takes all available parent space. You can wrap it in container if you want to constraint it (minimal height for browser is `500px`):
 
 ```jsx
 export default function App() {
   return (
     <div style={{width: "75%", height: 1024}}>
-      <AbstractFileBrowser
+      <ReactFSExplorer
         provider={provider}
       />
     </div>
@@ -57,7 +57,7 @@ Connect the browser to your own storage service with a `provider` callback. The 
 
 ### Composable UI
 
-Use the complete `<AbstractFileBrowser />` or build a custom layout from the exported file list, navigation, and preview components.
+Use the complete `<ReactFSExplorer />` or build a custom layout from the exported file list, navigation, and preview components.
 
 ### Optional file actions and previews
 
@@ -77,4 +77,4 @@ React and React DOM are the runtime peer dependencies. The library ships its CSS
 
 ## Need Help?
 
-[Post an Issue](https://github.com/DLWHI/abstract-fs-server/issues) or feel free to email me.
+[Post an Issue](https://github.com/DLWHI/react-fs-explorer-server/issues) or feel free to email me.

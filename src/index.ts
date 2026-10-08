@@ -1,22 +1,22 @@
 export {
-  AbstractFileBrowser,
+  ReactFSExplorer,
   type Content,
   type ContentProvider,
   type FileSelectorHandle,
-  type StorageBrowserProps,
+  type ExplorerProps as StorageBrowserProps,
 } from "./components/browser";
 export {
-  StorageNavigation as AbstractStorageNavigation,
+  StorageNavigation as ReactFSExplorerNavigation,
   type NavigationEventHandler,
 } from "./components/navigation";
 export {
-  Preview as AbstractFilePreview,
+  Preview as ReactFilePreview,
   type SourceURLProvider,
   type PreviewURLProvider,
   type DeleteEventHandler,
 } from "./components/preview";
 export {
-  FileList as AbstractFileList,
+  FileList as ReactFileList,
   type ItemOpenEventHandler,
   type ItemSelectEventHandler,
 } from "./components/file-list";

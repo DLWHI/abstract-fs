@@ -1,17 +1,17 @@
 @import "./css/colors.css";
 
 :root {
-  --afs-font: system-ui, "Segoe UI", Roboto, sans-serif;
+  --rfe-font: system-ui, "Segoe UI", Roboto, sans-serif;
 }
 
-.afs-flex-bar {
+.rfe-flex-bar {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
 }
 
-.afs-animated {
+.rfe-animated {
   transition: background, opacity, color;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 250ms;

@@ -1,5 +1,5 @@
 {
-  "name": "abstract-fs",
+  "name": "react-fs-explorer",
   "version": "0.1.0",
   "description": "Simple, backend agnostic, minimal dependency react component for browsing file systems",
   "keywords": [
@@ -19,13 +19,13 @@
     "buildable",
     "system"
   ],
-  "homepage": "https://github.com/DLWHI/abstract-fs-server#readme",
+  "homepage": "https://github.com/DLWHI/react-fs-explorer-server#readme",
   "bugs": {
-    "url": "https://github.com/DLWHI/abstract-fs-server/issues"
+    "url": "https://github.com/DLWHI/react-fs-explorer-server/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/DLWHI/abstract-fs-server.git"
+    "url": "git+ssh://git@github.com/DLWHI/react-fs-explorer-server.git"
   },
   "license": "MIT",
   "author": "dlwhi",
@@ -45,7 +45,6 @@
     "./style.css": "./dist/style.css"
   },
   "scripts": {
-    "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"

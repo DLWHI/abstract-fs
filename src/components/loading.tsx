@@ -3,8 +3,8 @@ import "./loading.css";
 
 export function Loading({ label }: { label: string }) {
   return (
-    <div className="afs-loading">
-      <div className="afs-loading-spinner-container">
+    <div className="rfe-loading">
+      <div className="rfe-loading-spinner-container">
         <Spinner />
       </div>
       <span>{label}</span>

@@ -17,10 +17,10 @@ export function StorageNavigation({
   const segments = path.split("/").filter(Boolean);
   let renderPath = "";
   return (
-    <nav className="afs-navbar-container" aria-label="Storage path">
+    <nav className="rfe-navbar-container" aria-label="Storage path">
       <button
         type="button"
-        className="afs-navbar-path-element afs-animated"
+        className="rfe-navbar-path-element rfe-animated"
         onClick={() => navigate(parentPath(path))}
         disabled={!path || loading}
       >
@@ -29,7 +29,7 @@ export function StorageNavigation({
       <span className="flex gap-2">
         <button
           type="button"
-          className="afs-navbar-path-element afs-animated"
+          className="rfe-navbar-path-element rfe-animated"
           onClick={() => navigate("")}
           disabled={!path || loading}
         >
@@ -44,7 +44,7 @@ export function StorageNavigation({
               <button
                 type="button"
                 key={path}
-                className="afs-navbar-path-element afs-animated"
+                className="rfe-navbar-path-element rfe-animated"
                 onClick={() => navigate(path)}
                 disabled={loading}
               >

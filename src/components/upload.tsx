@@ -29,7 +29,7 @@ export function StorageUpload({
 }) {
   return (
     <>
-      <div className="afs-upload-bar">
+      <div className="rfe-upload-bar">
         {onFolderCreate && (
           <StorageFolderDialog
             path={path}
@@ -81,31 +81,31 @@ function StorageFolderDialog({
     <>
       <button
         type="button"
-        className="afs-upload-button afs-animated"
-        popoverTarget="afs-folder-form"
-        id="afs-create-folder-button"
+        className="rfe-upload-button rfe-animated"
+        popoverTarget="rfe-folder-form"
+        id="rfe-create-folder-button"
       >
         {getLabel("create_folder", labels, t)}
       </button>
       <div
         ref={popoverRef}
         popover="auto"
-        id="afs-folder-form"
-        className="afs-create-folder-popover"
+        id="rfe-folder-form"
+        className="rfe-create-folder-popover"
       >
-        <form onSubmit={submit} className="afs-create-folder-form">
-          <h2 className="afs-create-folder-form-header">add_folder</h2>
+        <form onSubmit={submit} className="rfe-create-folder-form">
+          <h2 className="rfe-create-folder-form-header">add_folder</h2>
           <input
             autoFocus
             value={name}
             onChange={(e) => setName(e.target.value)}
             placeholder="New folder"
-            className="afs-create-folder-input"
+            className="rfe-create-folder-input"
           />
-          <div className="afs-create-folder-confirm">
+          <div className="rfe-create-folder-confirm">
             <button
               type="button"
-              className="afs-upload-button afs-animated"
+              className="rfe-upload-button rfe-animated"
               onClick={() => {
                 if (popoverRef.current) {
                   popoverRef.current.hidePopover();
@@ -114,7 +114,7 @@ function StorageFolderDialog({
             >
               {getLabel("cancel", labels, t)}
             </button>
-            <button type="submit" className="afs-upload-button afs-animated">
+            <button type="submit" className="rfe-upload-button rfe-animated">
               {getLabel("confirm", labels, t)}
             </button>
           </div>
@@ -164,7 +164,7 @@ function UploadButton({
   return (
     <button
       type="button"
-      className="afs-upload-button afs-animated"
+      className="rfe-upload-button rfe-animated"
       disabled={loading}
       onClick={() => {
         if (inputRef.current) {

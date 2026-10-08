@@ -1,4 +1,4 @@
-.afs-upload-bar {
+.rfe-upload-bar {
   display: flex;
   align-items: center;
   justify-content: end;
@@ -6,7 +6,7 @@
   height: 100%;
 }
 
-.afs-create-folder-popover {
+.rfe-create-folder-popover {
   margin: 0;
   inset: auto;
   position-area: bottom span-left;
@@ -18,17 +18,17 @@
     transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
     display 250ms cubic-bezier(0.4, 0, 0.2, 1) allow-discrete,
     overlay 0.3s cubic-bezier(0.4, 0, 0.2, 1) allow-discrete;
-  color: var(--afs-on-background);
-  font-family: var(--afs-font);
-  border: 1px solid var(--afs-on-background);
+  color: var(--rfe-on-background);
+  font-family: var(--rfe-font);
+  border: 1px solid var(--rfe-on-background);
   border-radius: 1rem;
-  background-color: var(--afs-background);
+  background-color: var(--rfe-background);
   padding: 0.5rem 1rem;
   width: 18rem;
   overflow-x: visible;
 }
 
-.afs-create-folder-popover:popover-open {
+.rfe-create-folder-popover:popover-open {
   opacity: 1;
   transform: translateY(0);
   transition:
@@ -39,62 +39,62 @@
 }
 
 @starting-style {
-  .afs-create-folder-popover:popover-open {
+  .rfe-create-folder-popover:popover-open {
     opacity: 0;
     transform: translateY(-10px);
   }
 }
 
-.afs-create-folder-backdrop {
+.rfe-create-folder-backdrop {
   position: fixed;
   inset: 0;
 }
 
-.afs-create-folder-form {
+.rfe-create-folder-form {
   display: flex;
   flex-direction: column;
   gap: 0.5rem; /* 8px */
   width: 100%;
 }
 
-.afs-create-folder-form-header {
+.rfe-create-folder-form-header {
   font-size: 1rem; /* 20px */
   line-height: 1.5rem; /* 28px */
   font-weight: 500;
 }
 
-.afs-create-folder-input {
+.rfe-create-folder-input {
   padding-left: 1rem; /* 16px */
   padding-right: 1rem; /* 16px */
   height: 2.5rem; /* 40px */
   border-radius: 0.25rem; /* 4px */
   border-style: solid;
   border-color: none;
-  background-color: var(--afs-foreground);
+  background-color: var(--rfe-foreground);
   outline-width: 1px;
-  outline-color: var(--afs-on-foreground);
+  outline-color: var(--rfe-on-foreground);
 }
 
-.afs-create-folder-input:focus {
-  outline-color: var(--afs-special);
+.rfe-create-folder-input:focus {
+  outline-color: var(--rfe-special);
 }
 
-.afs-create-folder-confirm {
+.rfe-create-folder-confirm {
   display: flex;
   align-items: center;
   justify-content: end;
 }
 
-.afs-upload-button {
+.rfe-upload-button {
   border-radius: 1.5rem;
   border-style: none;
   color: var(--foreground);
   background-color: transparent;
   padding: 0.75rem 1rem;
   font-size: 1rem;
-  font-family: var(--afs-font);
+  font-family: var(--rfe-font);
 }
 
-.afs-upload-button:hover {
-  background-color: var(--afs-special);
+.rfe-upload-button:hover {
+  background-color: var(--rfe-special);
 }

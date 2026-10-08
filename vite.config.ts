@@ -20,7 +20,7 @@ export default defineConfig({
   build: {
     lib: {
       entry: resolve(configDirectory, "src/index.ts"),
-      name: "AbstractFS",
+      name: "ReactFSExplorer",
       fileName: (format) => `index.${format === "es" ? "mjs" : "js"}`,
       formats: ["es", "cjs"],
       cssFileName: "style",
