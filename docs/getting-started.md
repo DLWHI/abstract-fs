@@ -56,7 +56,6 @@ const files = [
     date: new Date(2023, 11, 1, 14, 45),
     type: "folder",
   },
-
   {
     id: "/Info.txt",
     size: 1000,

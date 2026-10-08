@@ -1,5 +1,5 @@
 import type { StorageEntity } from "../lib/types";
-import { isFolder, itemName, formatSize, typeOf } from "../lib/util";
+import { isFolder, itemName, typeOf } from "../lib/util";
 import { ItemIcon } from "./item-icon";
 import { getLabel, type LabelProvider, type Labels } from "../i18n/types";
 import "./file-list.css";
@@ -119,9 +119,7 @@ function FileListRow({
         {getLabel(typeOf(item), labels, t)}
       </span>
       <span className="rfe-file-table-text">
-        {item.modified
-          ? new Date(item.modified).toLocaleString()
-          : formatSize(item.size)}
+        {item.modified && new Date(item.modified).toLocaleString()}
       </span>
     </button>
   );
