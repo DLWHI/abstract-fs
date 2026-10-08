@@ -10,13 +10,13 @@ export {
   type NavigationEventHandler,
 } from "./components/navigation";
 export {
-  Preview as ReactFilePreview,
+  Preview as ReactFSPreview,
   type SourceURLProvider,
   type PreviewURLProvider,
   type DeleteEventHandler,
 } from "./components/preview";
 export {
-  FileList as ReactFileList,
+  FileList as ReactFSList,
   type ItemOpenEventHandler,
   type ItemSelectEventHandler,
 } from "./components/file-list";
