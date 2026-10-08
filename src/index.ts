@@ -3,7 +3,7 @@ export {
   type Content,
   type ContentProvider,
   type FileSelectorHandle,
-  type ExplorerProps as StorageBrowserProps,
+  type ExplorerProps,
 } from "./components/browser";
 export {
   StorageNavigation as ReactFSNavigation,
