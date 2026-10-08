@@ -59,7 +59,7 @@ export default function App() {
 
 ## Documentation
 
-There's github hosted wiki that covers all required aspect of this library. Also, there is offline Markdown styled docs available at []
+There's github hosted wiki that covers all required aspect of this library. Also, there is offline  [Markdown styled docs](docs/index.md) available at source tree.  If you need server to provide you file or some example reference [there is repository](https://github.com/DLWHI/react-fs-server) that provides working example of this library and hostable server.
 
 ## Features
 
